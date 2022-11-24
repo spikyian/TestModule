@@ -25,3 +25,17 @@ void init(void) {
 void loop(void) {
     
 }
+
+// Application functions required by MERGLCB library
+unsigned char APP_nvDefault(unsigned char index) {
+    return 0;
+} 
+void APP_GSTOP(void) {
+    
+} 
+void APP_nvValueChanged(unsigned char index, unsigned char value, unsigned char oldValue) {
+    
+}
+unsigned char APP_nvValidate(unsigned char index, unsigned char value)  {
+    return 0;
+}
