@@ -8,10 +8,8 @@
 // continue
 #include "module.h"
 
-
-
 void init(void) {
-    unsigned char i;
+    uint8_t i;
     i=0;
     // add the services we need
     //services[i++] = &consumerService;  // event consumption done early for better response times
@@ -27,15 +25,18 @@ void loop(void) {
 }
 
 // Application functions required by MERGLCB library
-unsigned char APP_nvDefault(unsigned char index) {
+uint8_t APP_nvDefault(uint8_t index) {
     return 0;
 } 
 void APP_GSTOP(void) {
     
 } 
-void APP_nvValueChanged(unsigned char index, unsigned char value, unsigned char oldValue) {
+void APP_nvValueChanged(uint8_t index, uint8_t value, uint8_t oldValue) {
     
 }
-unsigned char APP_nvValidate(unsigned char index, unsigned char value)  {
+uint8_t APP_nvValidate(uint8_t index, uint8_t value)  {
     return 0;
 }
+uint8_t APP_isSuitableTimeToWriteFlash(void){
+    return 1;
+} 

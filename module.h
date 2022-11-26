@@ -18,8 +18,8 @@ extern void APP_GSTOP(void);
 #define NV_NVM_TYPE EEPROM_NVM_TYPE
 #define NV_CACHE
 extern void APP_factoryResetNv(void);
-extern unsigned char APP_nvValidate(unsigned char index, unsigned char value);
-extern void APP_nvValueChanged(unsigned char index, unsigned char newValue, unsigned char oldValue);
+extern uint8_t APP_nvValidate(uint8_t index, uint8_t value);
+extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue);
 
 //
 // CAN service
@@ -37,6 +37,8 @@ extern void APP_nvValueChanged(unsigned char index, unsigned char newValue, unsi
 //
 // MNS service
 //
+// Processor clock speed
+#define clkMHz      16
 // 2 bytes for the module's node number
 #define NN_ADDRESS  0x3FC 
 #define NN_NVM_TYPE EEPROM_NVM_TYPE
@@ -57,4 +59,10 @@ extern void APP_nvValueChanged(unsigned char index, unsigned char newValue, unsi
 #define PARAM_NUM_EV_EVENT      0
 // Module name - must be 7 characters
 #define NAME    "TEST   "
+// LEDs and PB
+#define NUM_LEDS    2                                   // GREEN is 0 YELLOW is 1
+#define APP_setPortDirections()(TRISBbits.TRISB6=TRISBbits.TRISB7=0,TRISAbits.TRISA2=1)
+#define APP_writeLED1(state)   (LATBbits.LATB7=state)   // true is on
+#define APP_writeLED2(state)   (LATBbits.LATB6=state)   // true is on
+#define APP_pbState()          PORTAbits.RA2            // where the push button is connected
 
