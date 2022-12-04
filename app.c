@@ -16,8 +16,10 @@ void init(void) {
     services[i++] = &canService;
     services[i++] = &mnsService;
     services[i++] = &nvService;
-    services[i++] = &bootService;  
-
+    services[i++] = &bootService; 
+    
+    // use CAN as the module's transport
+    transport = &canTransport;
 }
 
 void loop(void) {
@@ -40,3 +42,6 @@ uint8_t APP_nvValidate(uint8_t index, uint8_t value)  {
 uint8_t APP_isSuitableTimeToWriteFlash(void){
     return 1;
 } 
+uint8_t APP_processMessage(Message * m) {
+    return 0;
+}

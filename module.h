@@ -17,7 +17,7 @@ extern void APP_GSTOP(void);
 #define NV_ADDRESS  0x200
 #define NV_NVM_TYPE EEPROM_NVM_TYPE
 #define NV_CACHE
-extern void APP_factoryResetNv(void);
+extern uint8_t APP_nvDefault(uint8_t index);
 extern uint8_t APP_nvValidate(uint8_t index, uint8_t value);
 extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue);
 
@@ -26,12 +26,14 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 //
 #define CANID_ADDRESS  0x3FE    // 1 byte
 #define CANID_NVM_TYPE EEPROM_NVM_TYPE
-#define CANID_DEFAULT   1
+#define CAN_INTERRUPT_PRIORITY 0    // all low priority
+#define CAN_CLOCK_MHz   64
 
 //
 // BOOT service
 //
 #define BOOT_FLAG_ADDRESS   0x3FF
+#define BOOT_FLAG_NVM_TYPE EEPROM_NVM_TYPE
 #define BOOTLOADER_PRESENT
 
 //
@@ -42,12 +44,9 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 // 2 bytes for the module's node number
 #define NN_ADDRESS  0x3FC 
 #define NN_NVM_TYPE EEPROM_NVM_TYPE
-#define NN_HI_DEFAULT  0
-#define NN_LO_DEFAULT  0
 // 1 byte for the mode
 #define MODE_ADDRESS    0x3FB
 #define MODE_NVM_TYPE   EEPROM_NVM_TYPE
-#define MODE_DEFAULT    MODE_SETUP
 // Parameters
 #define PARAM_MANU              MANU_MERG
 #define PARAM_MAJOR_VERSION     1
