@@ -1,3 +1,6 @@
+#ifndef _MODULE_H_
+#define _MODULE_H_
+#include "nv.h"
 //
 // General MERGLCB stuff
 //
@@ -7,7 +10,6 @@
 #define NUM_TXBUFFERS   8
 // The data version stored at NV#0
 #define APP_NVM_VERSION 1
-extern void APP_GSTOP(void);
 
 
 //
@@ -18,7 +20,7 @@ extern void APP_GSTOP(void);
 #define NV_NVM_TYPE EEPROM_NVM_TYPE
 #define NV_CACHE
 extern uint8_t APP_nvDefault(uint8_t index);
-extern uint8_t APP_nvValidate(uint8_t index, uint8_t value);
+extern NvValidation APP_nvValidate(uint8_t index, uint8_t value);
 extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue);
 
 //
@@ -48,11 +50,11 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define MODE_ADDRESS    0x3FB
 #define MODE_NVM_TYPE   EEPROM_NVM_TYPE
 // Parameters
-#define PARAM_MANU              MANU_MERG
+#define PARAM_MANU              0xAB
+#define PARAM_MODULE_ID         0xAD
 #define PARAM_MAJOR_VERSION     1
 #define PARAM_MINOR_VERSION     'a'
 #define PARAM_BUILD_VERSION     1
-#define PARAM_MODULE_ID         MTYP_MERGLCB
 #define PARAM_NUM_NV            NV_NUM
 #define PARAM_NUM_EVENTS        0
 #define PARAM_NUM_EV_EVENT      0
@@ -65,3 +67,4 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define APP_writeLED2(state)   (LATBbits.LATB6=state)   // true is on
 #define APP_pbState()          PORTAbits.RA2            // where the push button is connected
 
+#endif

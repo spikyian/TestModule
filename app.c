@@ -8,6 +8,17 @@
 // continue
 #include "module.h"
 
+/**************************************************************************
+ * Application code packed with the bootloader must be compiled with options:
+ * XC8 linker options -> Additional options --CODEOFFSET=0x800 
+ * This generates an error
+ * ::: warning: (2044) unrecognized option "--CODEOFFSET=0x800"
+ * but this can be ignored as the option works
+ * 
+ * Then the Application project must be made dependent on the Bootloader 
+ * project by adding the Bootloader to project properties->Conf:->Loading
+ ***************************************************************************/
+
 void init(void) {
     uint8_t i;
     i=0;
@@ -30,18 +41,18 @@ void loop(void) {
 uint8_t APP_nvDefault(uint8_t index) {
     return 0;
 } 
-void APP_GSTOP(void) {
-    
-} 
 void APP_nvValueChanged(uint8_t index, uint8_t value, uint8_t oldValue) {
     
 }
-uint8_t APP_nvValidate(uint8_t index, uint8_t value)  {
-    return 0;
+NvValidation APP_nvValidate(uint8_t index, uint8_t value)  {
+    return VALID;
 }
-uint8_t APP_isSuitableTimeToWriteFlash(void){
-    return 1;
+ValidTime APP_isSuitableTimeToWriteFlash(void){
+    return GOOD_TIME;
 } 
-uint8_t APP_processMessage(Message * m) {
-    return 0;
+Processed APP_preProcessMessage(Message * m) {
+    return NOT_PROCESSED;
+}
+Processed APP_postProcessMessage(Message * m) {
+    return NOT_PROCESSED;
 }
