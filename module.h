@@ -4,7 +4,7 @@
 //
 // General MERGLCB stuff
 //
-#define NUM_SERVICES 8   
+#define NUM_SERVICES 4   
 // Number of buffers
 #define NUM_RXBUFFERS   32  
 #define NUM_TXBUFFERS   8
@@ -42,7 +42,7 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 // MNS service
 //
 // Processor clock speed
-#define clkMHz      16
+#define clkMHz      64
 // 2 bytes for the module's node number
 #define NN_ADDRESS  0x3FC 
 #define NN_NVM_TYPE EEPROM_NVM_TYPE
@@ -65,6 +65,6 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define APP_setPortDirections()(TRISBbits.TRISB6=TRISBbits.TRISB7=0,TRISAbits.TRISA2=1)
 #define APP_writeLED1(state)   (LATBbits.LATB7=state)   // true is on
 #define APP_writeLED2(state)   (LATBbits.LATB6=state)   // true is on
-#define APP_pbState()          PORTAbits.RA2            // where the push button is connected
+#define APP_pbState()          (!(PORTAbits.RA2))            // where the push button is connected
 
 #endif

@@ -19,15 +19,22 @@
  * project by adding the Bootloader to project properties->Conf:->Loading
  ***************************************************************************/
 
+const Service * const services[] = {
+    &canService,
+    &mnsService,
+    &nvService,
+    &bootService
+};
 void init(void) {
-    uint8_t i;
+    /*uint8_t i;
     i=0;
     // add the services we need
     //services[i++] = &consumerService;  // event consumption done early for better response times
     services[i++] = &canService;
     services[i++] = &mnsService;
     services[i++] = &nvService;
-    services[i++] = &bootService; 
+    services[i++] = &bootService; */
+    
     
     // use CAN as the module's transport
     transport = &canTransport;
