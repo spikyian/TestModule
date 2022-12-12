@@ -25,7 +25,7 @@ const Service * const services[] = {
     &nvService,
     &bootService
 };
-void init(void) {
+void setup(void) {
     /*uint8_t i;
     i=0;
     // add the services we need
@@ -46,7 +46,7 @@ void loop(void) {
 
 // Application functions required by MERGLCB library
 uint8_t APP_nvDefault(uint8_t index) {
-    return 0;
+    return index*3;
 } 
 void APP_nvValueChanged(uint8_t index, uint8_t value, uint8_t oldValue) {
     

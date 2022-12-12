@@ -5,9 +5,6 @@
 // General MERGLCB stuff
 //
 #define NUM_SERVICES 4   
-// Number of buffers
-#define NUM_RXBUFFERS   32  
-#define NUM_TXBUFFERS   8
 // The data version stored at NV#0
 #define APP_NVM_VERSION 1
 
@@ -30,6 +27,9 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define CANID_NVM_TYPE EEPROM_NVM_TYPE
 #define CAN_INTERRUPT_PRIORITY 0    // all low priority
 #define CAN_CLOCK_MHz   64
+// Number of buffers
+#define CAN_NUM_RXBUFFERS   32  
+#define CAN_NUM_TXBUFFERS   8
 
 //
 // BOOT service
@@ -50,7 +50,7 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define MODE_ADDRESS    0x3FB
 #define MODE_NVM_TYPE   EEPROM_NVM_TYPE
 // Parameters
-#define PARAM_MANU              0xAB
+#define PARAM_MANU              0xA5
 #define PARAM_MODULE_ID         0xAD
 #define PARAM_MAJOR_VERSION     1
 #define PARAM_MINOR_VERSION     'a'
@@ -63,8 +63,8 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 // LEDs and PB
 #define NUM_LEDS    2                                   // GREEN is 0 YELLOW is 1
 #define APP_setPortDirections()(TRISBbits.TRISB6=TRISBbits.TRISB7=0,TRISAbits.TRISA2=1)
-#define APP_writeLED1(state)   (LATBbits.LATB7=state)   // true is on
-#define APP_writeLED2(state)   (LATBbits.LATB6=state)   // true is on
+#define APP_writeLED1(state)   (LATBbits.LATB7=state)   // GREEN true is on
+#define APP_writeLED2(state)   (LATBbits.LATB6=state)   // YELLOW true is on 
 #define APP_pbState()          (!(PORTAbits.RA2))            // where the push button is connected
 
 #endif
