@@ -4,10 +4,9 @@
 //
 // General MERGLCB stuff
 //
-#define NUM_SERVICES 4   
 // The data version stored at NV#0
 #define APP_NVM_VERSION 1
-
+#define NUM_SERVICES 8
 
 //
 // NV service
@@ -56,8 +55,8 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define PARAM_MINOR_VERSION     'a'
 #define PARAM_BUILD_VERSION     1
 #define PARAM_NUM_NV            NV_NUM
-#define PARAM_NUM_EVENTS        0
-#define PARAM_NUM_EV_EVENT      0
+#define PARAM_NUM_EVENTS        250
+#define PARAM_NUM_EV_EVENT      20
 // Module name - must be 7 characters
 #define NAME    "TEST   "
 // LEDs and PB
@@ -65,6 +64,21 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define APP_setPortDirections()(TRISBbits.TRISB6=TRISBbits.TRISB7=0,TRISAbits.TRISA2=1)
 #define APP_writeLED1(state)   (LATBbits.LATB7=state)   // GREEN true is on
 #define APP_writeLED2(state)   (LATBbits.LATB6=state)   // YELLOW true is on 
-#define APP_pbState()          (!(PORTAbits.RA2))            // where the push button is connected
+#define APP_pbState()          (!(PORTAbits.RA2))       // where the push button is connected
+
+
+//
+// EVENT TEACH SERVICE
+//
+//
+#define EVENT_TABLE_WIDTH   10  // This the the width of the table - not the 
+                                // number of EVs per event as multiple rows in
+                                // the table can be used to store an event
+#define NUM_EVENTS          64  // The number of rows in the event table. The
+                                // actual number of events may be less than this
+                                // if any events use more the 1 row.
+#define EVENT_TABLE_ADDRESS 0xF000
+#define EVENT_TABLE_NVM_TYPE    FLASH_NVM_TYPE
+
 
 #endif

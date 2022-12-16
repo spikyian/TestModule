@@ -5,6 +5,10 @@
 #include "nv.h"
 #include "can.h"
 #include "boot.h"
+#include "event_teach.h"
+#include "event_consumer.h"
+#include "event_producer.h"
+#include "event_acknowledge.h"
 // continue
 #include "module.h"
 
@@ -23,7 +27,11 @@ const Service * const services[] = {
     &canService,
     &mnsService,
     &nvService,
-    &bootService
+    &bootService,
+    &eventTeachService,
+    &eventConsumerService,
+    &eventProducerService,
+    &eventAckService
 };
 void setup(void) {
     /*uint8_t i;
@@ -53,6 +61,9 @@ void APP_nvValueChanged(uint8_t index, uint8_t value, uint8_t oldValue) {
 }
 NvValidation APP_nvValidate(uint8_t index, uint8_t value)  {
     return VALID;
+}
+uint8_t APP_addEvent(uint16_t nodeNumber, uint16_t eventNumber, uint8_t evNum, uint8_t evVal) {
+    return 0;
 }
 ValidTime APP_isSuitableTimeToWriteFlash(void){
     return GOOD_TIME;
