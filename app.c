@@ -1,4 +1,5 @@
 #include <xc.h>
+#include "module.h"
 #include "merglcb.h"
 // the services
 #include "mns.h"
@@ -10,7 +11,8 @@
 #include "event_producer.h"
 #include "event_acknowledge.h"
 // continue
-#include "module.h"
+#include "arduino.h"
+
 
 /**************************************************************************
  * Application code packed with the bootloader must be compiled with options:
@@ -33,23 +35,32 @@ const Service * const services[] = {
     &eventProducerService,
     &eventAckService
 };
+#define NUM_IO  16
+uint8_t lastState[NUM_IO];
+
 void setup(void) {
-    /*uint8_t i;
-    i=0;
-    // add the services we need
-    //services[i++] = &consumerService;  // event consumption done early for better response times
-    services[i++] = &canService;
-    services[i++] = &mnsService;
-    services[i++] = &nvService;
-    services[i++] = &bootService; */
-    
+    uint8_t io;
     
     // use CAN as the module's transport
     transport = &canTransport;
+    
+    for (io=0; io<NUM_IO; io++) {
+        pinMode(io, INPUT);
+        lastState[io] = digitalRead(io);
+    }
 }
 
 void loop(void) {
+    uint8_t io;
+    uint8_t state;
     
+    for (io=0; io<NUM_IO; io++) {
+        state = digitalRead(io);
+        if (state != lastState[io]) {
+            lastState[io] = state;
+            sendProducedEvent(io, state);
+        }
+    }
 }
 
 // Application functions required by MERGLCB library

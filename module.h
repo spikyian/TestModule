@@ -80,5 +80,9 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define EVENT_TABLE_ADDRESS 0xF000
 #define EVENT_TABLE_NVM_TYPE    FLASH_NVM_TYPE
 
+//
+// EVENT PRODUCER SERVICE
+typedef uint8_t Happening;
+
 
 #endif
