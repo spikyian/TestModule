@@ -1,5 +1,6 @@
 #ifndef _MODULE_H_
 #define _MODULE_H_
+
 #include "nv.h"
 //
 // General MERGLCB stuff
@@ -7,6 +8,9 @@
 // The data version stored at NV#0
 #define APP_NVM_VERSION 1
 #define NUM_SERVICES 8
+
+// The hardware
+#define CANMIO
 
 //
 // NV service
@@ -79,10 +83,21 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
                                 // if any events use more the 1 row.
 #define EVENT_TABLE_ADDRESS 0xF000
 #define EVENT_TABLE_NVM_TYPE    FLASH_NVM_TYPE
+#define EVENT_HASH_TABLE
+#define EVENT_HASH_LENGTH  32
+#define EVENT_CHAIN_LENGTH    20
+#define MAX_HAPPENING       16
+#define PRODUCED_EVENTS
+#define CONSUMED_EVENTS
 
 //
 // EVENT PRODUCER SERVICE
-typedef uint8_t Happening;
-
+#define HAPPENING_SIZE  1
+//
+// EVENT CONSUMER SERVICE
+#define HANDLE_DATA_EVENTS
+#define COMSUMER_EVS_AS_ACTIONS
+#define ACTION_SIZE  1
+#define ACTION_QUEUE_SIZE   16
 
 #endif

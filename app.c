@@ -58,7 +58,7 @@ void loop(void) {
         state = digitalRead(io);
         if (state != lastState[io]) {
             lastState[io] = state;
-            sendProducedEvent(io, state);
+            sendProducedEvent(io+1, state?EVENT_ON:EVENT_OFF);
         }
     }
 }
@@ -74,7 +74,7 @@ NvValidation APP_nvValidate(uint8_t index, uint8_t value)  {
     return VALID;
 }
 uint8_t APP_addEvent(uint16_t nodeNumber, uint16_t eventNumber, uint8_t evNum, uint8_t evVal) {
-    return 0;
+    return addEvent(nodeNumber, eventNumber, evNum, evVal, 0);
 }
 ValidTime APP_isSuitableTimeToWriteFlash(void){
     return GOOD_TIME;
