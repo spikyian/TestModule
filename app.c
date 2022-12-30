@@ -85,3 +85,7 @@ Processed APP_preProcessMessage(Message * m) {
 Processed APP_postProcessMessage(Message * m) {
     return NOT_PROCESSED;
 }
+EventState APP_GetEventState(Happening h) {
+    if (h >= NUM_IO) return EVENT_OFF;
+    return lastState[h-1] ? EVENT_ON : EVENT_OFF;
+}

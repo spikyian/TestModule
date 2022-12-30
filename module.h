@@ -42,36 +42,6 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define BOOTLOADER_PRESENT
 
 //
-// MNS service
-//
-// Processor clock speed
-#define clkMHz      64
-// 2 bytes for the module's node number
-#define NN_ADDRESS  0x3FC 
-#define NN_NVM_TYPE EEPROM_NVM_TYPE
-// 1 byte for the mode
-#define MODE_ADDRESS    0x3FB
-#define MODE_NVM_TYPE   EEPROM_NVM_TYPE
-// Parameters
-#define PARAM_MANU              0xA5
-#define PARAM_MODULE_ID         0xAD
-#define PARAM_MAJOR_VERSION     1
-#define PARAM_MINOR_VERSION     'a'
-#define PARAM_BUILD_VERSION     1
-#define PARAM_NUM_NV            NV_NUM
-#define PARAM_NUM_EVENTS        250
-#define PARAM_NUM_EV_EVENT      20
-// Module name - must be 7 characters
-#define NAME    "TEST   "
-// LEDs and PB
-#define NUM_LEDS    2                                   // GREEN is 0 YELLOW is 1
-#define APP_setPortDirections()(TRISBbits.TRISB6=TRISBbits.TRISB7=0,TRISAbits.TRISA2=1)
-#define APP_writeLED1(state)   (LATBbits.LATB7=state)   // GREEN true is on
-#define APP_writeLED2(state)   (LATBbits.LATB6=state)   // YELLOW true is on 
-#define APP_pbState()          (!(PORTAbits.RA2))       // where the push button is connected
-
-
-//
 // EVENT TEACH SERVICE
 //
 //
@@ -99,5 +69,35 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define COMSUMER_EVS_AS_ACTIONS
 #define ACTION_SIZE  1
 #define ACTION_QUEUE_SIZE   16
+
+//
+// MNS service
+//
+// Processor clock speed
+#define clkMHz      64
+// 2 bytes for the module's node number
+#define NN_ADDRESS  0x3FC 
+#define NN_NVM_TYPE EEPROM_NVM_TYPE
+// 1 byte for the mode
+#define MODE_ADDRESS    0x3FB
+#define MODE_NVM_TYPE   EEPROM_NVM_TYPE
+// Parameters
+#define PARAM_MANU              0xA5
+#define PARAM_MODULE_ID         0xAD
+#define PARAM_MAJOR_VERSION     1
+#define PARAM_MINOR_VERSION     'a'
+#define PARAM_BUILD_VERSION     1
+#define PARAM_NUM_NV            NV_NUM
+#define PARAM_NUM_EVENTS        NUM_EVENTS
+#define PARAM_NUM_EV_EVENT      20
+// Module name - must be 7 characters
+#define NAME    "TEST   "
+// LEDs and PB
+#define NUM_LEDS    2                                   // GREEN is 0 YELLOW is 1
+#define APP_setPortDirections()(TRISBbits.TRISB6=TRISBbits.TRISB7=0,TRISAbits.TRISA2=1)
+#define APP_writeLED1(state)   (LATBbits.LATB7=state)   // GREEN true is on
+#define APP_writeLED2(state)   (LATBbits.LATB6=state)   // YELLOW true is on 
+#define APP_pbState()          (!(PORTAbits.RA2))       // where the push button is connected
+
 
 #endif
