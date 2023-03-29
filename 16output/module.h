@@ -56,12 +56,12 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define EVENT_HASH_TABLE
 #define EVENT_HASH_LENGTH  32
 #define EVENT_CHAIN_LENGTH    20
-#define MAX_HAPPENING       16
-#define PRODUCED_EVENTS
+#define MAX_HAPPENING       1
 #define CONSUMED_EVENTS
 
 //
 // EVENT PRODUCER SERVICE
+#define PRODUCED_EVENTS
 #define HAPPENING_SIZE  1
 //
 // EVENT CONSUMER SERVICE
@@ -91,13 +91,15 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define PARAM_NUM_EVENTS        NUM_EVENTS
 #define PARAM_NUM_EV_EVENT      20
 // Module name - must be 7 characters
-#define NAME    "TEST   "
+#define NAME    "16OUT  "
 // LEDs and PB
 #define NUM_LEDS    2                                   // GREEN is 0 YELLOW is 1
 #define APP_setPortDirections()(TRISBbits.TRISB6=TRISBbits.TRISB7=0,TRISAbits.TRISA2=1)
 #define APP_writeLED1(state)   (LATBbits.LATB7=state)   // GREEN true is on
 #define APP_writeLED2(state)   (LATBbits.LATB6=state)   // YELLOW true is on 
 #define APP_pbState()          (!(PORTAbits.RA2))       // where the push button is connected
+
+#define HEARTBEAT_HAPPENING     1
 
 
 #endif
