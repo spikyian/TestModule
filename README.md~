@@ -1,11 +1,9 @@
 # TestModule
-A set of MERGLCB test modules and example modules for use with MERGLCBlib.
+A et of MERGLCB test modules and example modules for use with MERGLCBlib.
 Use with XC8.
 
-  * 16input - Implements a very simple (too simple) 16 channel input module.  
-  * 16output - Implements a very simple (too simple) 16 channel output module. 
-
-These are not suitable for production use but can be used as a basis for production modules.
+  * 16input - Implements a ivery simple (too simple) 16 channel input module.  
+  * 16output - Implements a ivery simple (too simple) 16 channel output module. 
 
 ## 16 Input
 

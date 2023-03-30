@@ -10,6 +10,17 @@
  * * Ability to change the polarity of outputs generated
  * * Restore previous state on power on
  * * Any default events
+ * 
+ * This module could have been implemented in two ways:
+ * 1. To add code to the APP_preProcessMessage() function and process the 
+ *    ACON/ACOF/ASON/ASOF directly.
+ * 2. Add code to the APP_processConsumedEvent(tableIndex, m) function without
+ *    any interpretation of how the EVs are used.
+ * 3. To allow the event_consumer service add the event's Actions to an action 
+ *    queue and then process the Actions from the queue in the application's
+ *    main loop.
+ * 
+ * This example implements method 3.
  */
 
 /**
@@ -120,8 +131,7 @@ void loop(void) {
 }
 
 // Application functions required by MERGLCB library
-/**
- * The NVs are not really used by this example code. They are simply initialised
+/**really used by this example code. They are simply initialised
  * here in a reconisable way.
  */
 uint8_t APP_nvDefault(uint8_t index) {
