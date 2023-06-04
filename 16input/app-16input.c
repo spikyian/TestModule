@@ -53,7 +53,7 @@
 
 #include <xc.h>
 #include "module.h"
-#include "merglcb.h"
+#include "vlcb.h"
 // the services
 #include "mns.h"
 #include "nv.h"
