@@ -125,7 +125,7 @@ void loop(void) {
         io = a->a.value;
         if ((io >0) && (io <= NUM_IO)) {
             state = a->state;
-            digitalWrite(io, state);
+            digitalWrite(io-1, state);
         }
     }
 }
