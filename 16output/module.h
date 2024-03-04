@@ -2,12 +2,14 @@
 #define _MODULE_H_
 
 #include "nv.h"
+#include "statusLeds.h"
+
 //
 // General MERGLCB stuff
 //
 // The data version stored at NV#0
 #define APP_NVM_VERSION 1
-#define NUM_SERVICES 8
+#define NUM_SERVICES 9
 
 // The hardware
 #define CANMIO
@@ -81,9 +83,12 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 // 1 byte for the mode
 #define MODE_ADDRESS    0x3FB
 #define MODE_NVM_TYPE   EEPROM_NVM_TYPE
+// 1 byte for the mode flags
+#define MODE_FLAGS_ADDRESS    0x3FA
+#define MODE_FLAGS_NVM_TYPE   EEPROM_NVM_TYPE
 // Parameters
-#define PARAM_MANU              0xA5
-#define PARAM_MODULE_ID         0xAD
+#define PARAM_MANU              MANU_VLCB
+#define PARAM_MODULE_ID         MTYP_VLCB_16OUT
 #define PARAM_MAJOR_VERSION     1
 #define PARAM_MINOR_VERSION     'a'
 #define PARAM_BUILD_VERSION     1
@@ -94,12 +99,11 @@ extern void APP_nvValueChanged(uint8_t index, uint8_t newValue, uint8_t oldValue
 #define NAME    "16OUT  "
 // LEDs and PB
 #define NUM_LEDS    2                                   // GREEN is 0 YELLOW is 1
-#define APP_setPortDirections()(TRISBbits.TRISB6=TRISBbits.TRISB7=0,TRISAbits.TRISA2=1)
+#define APP_setPortDirections(){ANCON0=ANCON1=0; TRISBbits.TRISB6=TRISBbits.TRISB7=0,TRISAbits.TRISA2=1;}
 #define APP_writeLED1(state)   (LATBbits.LATB7=state)   // GREEN true is on
 #define APP_writeLED2(state)   (LATBbits.LATB6=state)   // YELLOW true is on 
-#define APP_pbState()          (!(PORTAbits.RA2))       // where the push button is connected
-
-#define HEARTBEAT_HAPPENING     1
+#define APP_pbPressed()        (!(PORTAbits.RA2))       // where the push button is connected. True when pressed
+#define APP_TestMode()         ;
 
 
 #endif

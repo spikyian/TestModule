@@ -75,6 +75,7 @@
 #include "event_consumer.h"
 #include "event_producer.h"
 #include "event_acknowledge.h"
+#include "event_coe.h"
 // continue
 #include "arduino.h"
 
@@ -98,6 +99,7 @@ const Service * const services[] = {
     &eventTeachService,
     &eventConsumerService,
     &eventProducerService,  // needed for the Heartbeat event
+    &eventCoeService,
     &eventAckService
 };
 #define NUM_IO  16
